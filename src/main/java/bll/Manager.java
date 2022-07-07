@@ -4,6 +4,7 @@ import dal.DAOFactory;
 import dal.Impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Manager {
     private static volatile Manager instance = null;
@@ -21,5 +22,15 @@ public class Manager {
             }
         }
         return Manager.instance;
+    }
+
+    public List<Object> getAllAuteurs() throws SQLException {
+        List<Object> auteurs = null;
+        try {
+            auteurs = impl.selectAll();
+        } catch (SQLException e) {
+            throw new SQLException(e);
+        }
+        return auteurs;
     }
 }
